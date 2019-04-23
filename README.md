@@ -18,6 +18,10 @@ test2.c: Dynamic Loading. 运行的时候加载动态库, 通过dlopen和dlclose
 
 
 经验:
+Android上Dynamic Loading问题.
+在编译的时候CFLAGS里面默认是visibility=hidden, 也就是symbol不导出, 即在nm libxx.so时候看不到symbol.
+在函数前面加上EGLAPI = KHRONOS_APICALL=__attribute__(visibility("default"))就可以看到了.
+
 eglGetProcAddress和dlsym什么关系?
 1, eglGetProcAddress也是一个函数, 也要通过dlsym得到的(一般都是第一个得到).
 2, 相当于另外一层封装. 得到了后再通过eglGetProcAddress得到其他函数的addr,

@@ -15,3 +15,10 @@ test2.c: Dynamic Loading. 运行的时候加载动态库, 通过dlopen和dlclose
 // 返回函数地址. 如果查找函数失败则返回NULL.
    fn = dlsym(lib_handle, "max");
 见egl_no_config_context_x11.
+
+
+经验:
+eglGetProcAddress和dlsym什么关系?
+1, eglGetProcAddress也是一个函数, 也要通过dlsym得到的(一般都是第一个得到).
+2, 相当于另外一层封装. 得到了后再通过eglGetProcAddress得到其他函数的addr,
+3, eglGetProcAddress是要求EGL initialized, 才能工作, 即在EGL的环境下.
